@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;800");
+@import "global_styles/variables_and_mixins";
+
+html, body, div, span, h1, h2, p, a, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "nunito", sans-serif;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 600;
+    color: $darkGrey;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+p {
+    color: $darkGrey;
+    @include reserTapHighlight;
+}
+
+.App {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+    font-family: "nunito", sans-serif;
+    box-sizing: border-box;
+    display: flex;
+    background: #fff;
+}
