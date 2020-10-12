@@ -1,0 +1,30 @@
+@import "global_styles/variables_and_mixins";
+
+.input {
+    padding: 3px;
+    height: 35px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.5em;
+    border-bottom: 1px solid $grey;
+    font-family: "nunito", sans-serif;
+    color: $themeColor;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    -moz-appearance: textfield;
+    &::-webkit-time-picker-indicator,
+    &::-webkit-calendar-picker-indicator,
+    &::-webkit-clear-button,
+    &::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
+    &::placeholder {
+        opacity: 0.5;
+        color: $darkGrey;
+    }
+    &:invalid {
+        color: red;
+    }
+}
