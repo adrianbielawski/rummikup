@@ -1,0 +1,32 @@
+@import "global_styles/variables_and_mixins";
+
+.timeLimit {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+    width: 100%;
+    input[type="time"] {
+        font-size: 2em;
+        text-transform: none;
+        width: 100%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        -webkit-appearance: none;
+        &::-webkit-time-picker-indicator,
+        &::-webkit-calendar-picker-indicator,
+        &::-webkit-clear-button,
+        &::-webkit-inner-spin-button {
+            display: none;
+            -webkit-appearance: none;
+        }
+        &::-webkit-datetime-edit-hour-field:focus,
+        &::-webkit-datetime-edit-minute-field:focus,
+        &::-webkit-datetime-edit-second-field:focus {
+            background: $lightGrey;
+            color: $themeColor;
+        }
+    }
+}
