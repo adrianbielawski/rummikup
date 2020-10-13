@@ -3,7 +3,7 @@ $lightGrey: #eee;
 $grey: #7b7b7b;
 $darkGrey: #5f5f5f;
 
-@mixin reserTapHighlight {
+@mixin resetTapHighlight {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
