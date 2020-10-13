@@ -1,0 +1,26 @@
+@import "global_styles/variables_and_mixins";
+
+.addPlayer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 100%;
+    margin-top: 10px;
+    .form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .playerNameInput {
+            width: 90%;
+        }
+    }
+    .addButton {
+        padding: 5px 7px;
+        margin-left: 3px;
+        height: 30px;
+        width: 30px;
+        font-size: 1.3em;
+        color: #fff;
+    }
+}
