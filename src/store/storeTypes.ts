@@ -11,6 +11,7 @@ export const ROUND_FINISHED = 'GAME/ROUND_FINISHED'
 export const TIMER_UPDATED = 'GAME/TIMER_UPDATED'
 export const TIME_OUT = 'GAME/TIME_OUT'
 export const TIME_END_UPDATED = 'GAME/TIME_END_UPDATED'
+export const PLAYER_SWITCHED = 'GAME/PLAYER_SWITCHED'
 
 export interface PlayerType {
     playerName: string,
@@ -82,5 +83,9 @@ interface updateTimeEnd {
     timeEnd: Moment,
 }
 
+interface playerSwitched {
+    type: typeof PLAYER_SWITCHED,
+}
+
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
-    | changePlayerColor | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd
+    | changePlayerColor | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd | playerSwitched

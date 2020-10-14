@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { useDoubleTap } from 'use-double-tap';
 import styles from './game.scss'
 //Custom components
 import Button from 'components/global_components/button/button'
 //Redux actions
-import { finishRound } from 'store/actions/appActions'
+import { switchPlayer, finishRound } from 'store/actions/appActions'
 import { useTypedSelector } from 'store/reducers'
 import Timer from './timer/timer'
 
@@ -15,6 +16,10 @@ const Game = () => {
     const players = useTypedSelector(state => state.app.players)
     const currentPlayer = useTypedSelector(state => state.app.currentPlayer)
     const colors = players[currentPlayer].color
+    
+    const dblTap = useDoubleTap(() => {
+        dispatch(switchPlayer())
+    })
 
     const handleFinishRound: HandleFinishRound = () => {
         dispatch(finishRound())
@@ -22,6 +27,7 @@ const Game = () => {
 
     return (
         <div
+            { ...dblTap }
             className={styles.game}
             style={{ backgroundColor: colors[0] }}
         >

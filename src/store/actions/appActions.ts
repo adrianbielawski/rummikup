@@ -2,7 +2,7 @@ import { Moment } from "moment"
 
 import { SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
     PLAYER_COLOR_CHANGED, GAME_STARTED, ROUND_FINISHED, TIMER_UPDATED, TIME_OUT, TIME_END_UPDATED,
-    PlayerType, AppActionTypes } from '../storeTypes';
+    PLAYER_SWITCHED, PlayerType, AppActionTypes } from '../storeTypes';
 
 export const changeScreenHeight = (screenHeight: number): AppActionTypes => {
     return {
@@ -75,5 +75,11 @@ export const updateTimeEnd = (timeEnd: Moment): AppActionTypes => {
     return {
         type: TIME_END_UPDATED,
         timeEnd,
+    }
+}
+
+export const switchPlayer = (): AppActionTypes => {
+    return {
+        type: PLAYER_SWITCHED,
     }
 }

@@ -79,6 +79,7 @@ const appReducer = (
             newState.timeLeft = timeLeft
             return newState
 
+        case 'GAME/PLAYER_SWITCHED':
         case 'GAME/TIME_OUT':
             let nextPlayer = newState.currentPlayer + 1
 
