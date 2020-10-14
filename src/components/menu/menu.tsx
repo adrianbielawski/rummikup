@@ -5,6 +5,8 @@ import styles from './menu.scss'
 import TimeLimit from './timeLimit/timeLimit'
 //Redux
 import { useTypedSelector } from '../../store/reducers/index'
+import AddPlayer from './addPlayer/addPlayer'
+import Players from './players/players'
 
 const Menu = () => {
     const dispatch = useDispatch()
@@ -12,6 +14,8 @@ const Menu = () => {
     return (
         <div className={styles.menu}>
             <TimeLimit />
+            <AddPlayer />
+            <Players />
         </div>
     )
 }

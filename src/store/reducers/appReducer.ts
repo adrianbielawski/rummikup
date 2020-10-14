@@ -1,6 +1,6 @@
 import { AppState, AppActionTypes } from '../storeTypes'
 import { cloneDeep } from 'lodash'
-import { COLORS } from '../.././constants/constants';
+import { COLORS } from '../.././constants/constants'
 
 const initialState: AppState = {
     screenHeight: window.innerHeight,
@@ -23,7 +23,7 @@ const appReducer = (
             return newState
 
         case 'MENU/PLAYER_ADDED':
-            let newPlayers = cloneDeep(newState.players);
+            let newPlayers = cloneDeep(newState.players)
             const id = newPlayers.length
             newPlayers.push({
                 playerName: action.playerName,
@@ -31,6 +31,13 @@ const appReducer = (
                 color: Object.entries(COLORS)[id],
                 score: 0,
             });
+            newState.players = newPlayers
+            return newState
+
+        case 'MENU/PLAYERS_REORDERED':
+        case 'MENU/PLAYER_REMOVED':
+            newState.players = action.newPlayers
+            return newState
 
         case 'MENU/PLAYER_COLOR_CHANGED':
             let players = cloneDeep(newState.players)
@@ -40,7 +47,7 @@ const appReducer = (
             return newState
 
         default:
-            return newState;
+            return newState
     }
 }
 

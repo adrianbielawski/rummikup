@@ -1,3 +1,4 @@
+import { SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
     PLAYER_COLOR_CHANGED, PlayerType, AppActionTypes } from '../storeTypes';
 
 export const changeScreenHeight = (screenHeight: number): AppActionTypes => {
@@ -18,6 +19,20 @@ export const addPlayer = (playerName: string): AppActionTypes => {
     return {
         type: PLAYER_ADDED,
         playerName,
+    }
+}
+
+export const playerRemoved = (newPlayers: PlayerType[]): AppActionTypes => {
+    return {
+        type: PLAYER_REMOVED,
+        newPlayers,
+    }
+}
+
+export const playersReordered = (newPlayers: PlayerType[]): AppActionTypes => {
+    return {
+        type: PLAYERS_REORDERED,
+        newPlayers,
     }
 }
 

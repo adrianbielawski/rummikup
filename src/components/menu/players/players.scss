@@ -1,0 +1,8 @@
+@import "global_styles/variables_and_mixins";
+
+.players {
+    color: $darkGrey;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
