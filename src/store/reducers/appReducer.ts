@@ -6,6 +6,7 @@ const initialState: AppState = {
     screenHeight: window.innerHeight,
     timeLimit: 60,
     players: [],
+    gameStarted: false,
 }
 
 const appReducer = (
@@ -44,6 +45,10 @@ const appReducer = (
             const playerIndex = players.findIndex(player => player.id === action.playerId)
             players[playerIndex].color = action.color
             newState.players = players
+            return newState
+
+        case 'MENU/GAME_STARTED':
+            newState.gameStarted = true
             return newState
 
         default:
