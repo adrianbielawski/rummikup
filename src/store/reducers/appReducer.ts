@@ -1,10 +1,13 @@
 import { AppState, AppActionTypes } from '../storeTypes'
 import { cloneDeep } from 'lodash'
+import moment from 'moment'
 import { COLORS } from 'constants/constants'
 
 const initialState: AppState = {
     screenHeight: window.innerHeight,
     timeLimit: 60,
+    timeLeft: 60,
+    timeEnd: moment(),
     players: [
         {
             playerName: 'sss',
@@ -68,6 +71,27 @@ const appReducer = (
 
         case 'GAME/ROUND_FINISHED':
             newState.roundFinished = true
+            return newState
+
+        case 'GAME/TIMER_UPDATED':
+            let timeLeft = moment(newState.timeEnd).diff(moment(), 'seconds', true)
+            timeLeft = Math.ceil(Math.max(0, timeLeft))
+            newState.timeLeft = timeLeft
+            return newState
+
+        case 'GAME/TIME_OUT':
+            let nextPlayer = newState.currentPlayer + 1
+
+            if (nextPlayer === newState.players.length) {
+                nextPlayer = 0;
+            }
+
+            newState.currentPlayer = nextPlayer
+            newState.timeEnd = moment().add(newState.timeLimit, 'seconds')
+            return newState
+
+        case 'GAME/TIME_END_UPDATED':
+            newState.timeEnd = action.timeEnd
             return newState
 
         default:

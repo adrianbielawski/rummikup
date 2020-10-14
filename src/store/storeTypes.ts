@@ -1,3 +1,5 @@
+import { Moment } from "moment"
+
 export const SCREEN_HEIGHT_CHANGED = 'APP/SCREEN_HEIGHT_CHANGED'
 export const TIME_LIMIT_UPDATED = 'MENU/TIME_LIMIT_UPDATED'
 export const PLAYER_ADDED = 'MENU/PLAYER_ADDED'
@@ -6,6 +8,9 @@ export const PLAYERS_REORDERED = 'MENU/PLAYERS_REORDERED'
 export const PLAYER_COLOR_CHANGED = 'MENU/PLAYER_COLOR_CHANGED'
 export const GAME_STARTED = 'MENU/GAME_STARTED'
 export const ROUND_FINISHED = 'GAME/ROUND_FINISHED'
+export const TIMER_UPDATED = 'GAME/TIMER_UPDATED'
+export const TIME_OUT = 'GAME/TIME_OUT'
+export const TIME_END_UPDATED = 'GAME/TIME_END_UPDATED'
 
 export interface PlayerType {
     playerName: string,
@@ -17,6 +22,8 @@ export interface PlayerType {
 export interface AppState {
     screenHeight: number,
     timeLimit: number,
+    timeLeft: number,
+    timeEnd: Moment,
     players: PlayerType[],
     currentPlayer: number,
     gameStarted: boolean,
@@ -62,5 +69,18 @@ interface finishRound {
     type: typeof ROUND_FINISHED,
 }
 
+interface timerUpdated {
+    type: typeof TIMER_UPDATED,
+}
+
+interface timeOut {
+    type: typeof TIME_OUT,
+}
+
+interface updateTimeEnd {
+    type: typeof TIME_END_UPDATED,
+    timeEnd: Moment,
+}
+
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
-    | changePlayerColor | startGame | finishRound
+    | changePlayerColor | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd

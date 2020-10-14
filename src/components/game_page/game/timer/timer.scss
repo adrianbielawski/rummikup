@@ -1,0 +1,15 @@
+@import "global_styles/variables_and_mixins";
+
+.timerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .timer {
+        font-size: 4em;
+        line-height: 1em;
+        font-weight: 900;
+        color: darken($themeColor, 10);
+        @include resetTapHighlight;
+    }
+}
