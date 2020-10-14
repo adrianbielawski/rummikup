@@ -31,7 +31,12 @@ const appReducer = (
                 color: Object.entries(COLORS)[id],
                 score: 0,
             });
-            newState.players = newPlayers;
+
+        case 'MENU/PLAYER_COLOR_CHANGED':
+            let players = cloneDeep(newState.players)
+            const playerIndex = players.findIndex(player => player.id === action.playerId)
+            players[playerIndex].color = action.color
+            newState.players = players
             return newState
 
         default:

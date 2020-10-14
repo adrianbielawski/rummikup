@@ -1,4 +1,4 @@
-import { SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, AppActionTypes } from '../storeTypes';
+    PLAYER_COLOR_CHANGED, PlayerType, AppActionTypes } from '../storeTypes';
 
 export const changeScreenHeight = (screenHeight: number): AppActionTypes => {
     return {
@@ -18,5 +18,13 @@ export const addPlayer = (playerName: string): AppActionTypes => {
     return {
         type: PLAYER_ADDED,
         playerName,
+    }
+}
+
+export const changePlayerColor = (playerId: number, color: string[]): AppActionTypes => {
+    return {
+        type: PLAYER_COLOR_CHANGED,
+        playerId,
+        color,
     }
 }

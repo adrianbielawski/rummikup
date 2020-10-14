@@ -3,6 +3,7 @@ import { Object } from "lodash";
 export const SCREEN_HEIGHT_CHANGED = 'APP/SCREEN_HEIGHT_CHANGED'
 export const TIME_LIMIT_UPDATED = 'MENU/TIME_LIMIT_UPDATED'
 export const PLAYER_ADDED = 'MENU/PLAYER_ADDED'
+export const PLAYER_COLOR_CHANGED = 'MENU/PLAYER_COLOR_CHANGED'
 
 interface Player {
     playerName: string,
@@ -32,4 +33,11 @@ interface addPlayer {
     playerName: string,
 }
 
-export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer
+
+interface changePlayerColor {
+    type: typeof PLAYER_COLOR_CHANGED,
+    playerId: number,
+    color: string[],
+}
+
+    | changePlayerColor

@@ -1,0 +1,11 @@
+@import "global_styles/variables_and_mixins";
+
+.colorPicker {
+    background: #fff;
+    border: 1px solid $darkGrey;
+    top: -1px;
+    left: -1px;
+    position: absolute;
+    display: inline-flex;
+    cursor: default;
+}
