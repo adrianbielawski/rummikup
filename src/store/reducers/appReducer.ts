@@ -5,8 +5,23 @@ import { COLORS } from '../.././constants/constants'
 const initialState: AppState = {
     screenHeight: window.innerHeight,
     timeLimit: 60,
-    players: [],
+    players: [
+        {
+            playerName: 'sss',
+            id: 0,
+            color: Object.entries(COLORS)[0],
+            score: 0,
+        },
+        {
+            playerName: 'ddd',
+            id: 1,
+            color: Object.entries(COLORS)[1],
+            score: 0,
+        }
+    ],
+    currentPlayer: 0,
     gameStarted: false,
+    roundFinished: false,
 }
 
 const appReducer = (
@@ -49,6 +64,10 @@ const appReducer = (
 
         case 'MENU/GAME_STARTED':
             newState.gameStarted = true
+            return newState
+
+        case 'GAME/ROUND_FINISHED':
+            newState.roundFinished = true
             return newState
 
         default:

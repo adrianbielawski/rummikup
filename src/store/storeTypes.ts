@@ -5,6 +5,7 @@ export const PLAYER_REMOVED = 'MENU/PLAYER_REMOVED'
 export const PLAYERS_REORDERED = 'MENU/PLAYERS_REORDERED'
 export const PLAYER_COLOR_CHANGED = 'MENU/PLAYER_COLOR_CHANGED'
 export const GAME_STARTED = 'MENU/GAME_STARTED'
+export const ROUND_FINISHED = 'GAME/ROUND_FINISHED'
 
 export interface PlayerType {
     playerName: string,
@@ -17,7 +18,9 @@ export interface AppState {
     screenHeight: number,
     timeLimit: number,
     players: PlayerType[],
+    currentPlayer: number,
     gameStarted: boolean,
+    roundFinished: boolean,
 }
 
 interface changeScreenHeight {
@@ -55,5 +58,9 @@ interface startGame {
     type: typeof GAME_STARTED,
 }
 
+interface finishRound {
+    type: typeof ROUND_FINISHED,
+}
+
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
-    | changePlayerColor | startGame
+    | changePlayerColor | startGame | finishRound

@@ -1,5 +1,5 @@
 import { SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
-    PLAYER_COLOR_CHANGED, GAME_STARTED, PlayerType, AppActionTypes } from '../storeTypes';
+    PLAYER_COLOR_CHANGED, GAME_STARTED, ROUND_FINISHED, PlayerType, AppActionTypes } from '../storeTypes';
 
 export const changeScreenHeight = (screenHeight: number): AppActionTypes => {
     return {
@@ -47,5 +47,11 @@ export const changePlayerColor = (playerId: number, color: string[]): AppActionT
 export const startGame = (): AppActionTypes => {
     return {
         type: GAME_STARTED,
+    }
+}
+
+export const finishRound = (): AppActionTypes => {
+    return {
+        type: ROUND_FINISHED,
     }
 }
