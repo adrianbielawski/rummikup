@@ -4,11 +4,11 @@ import styles from './players.scss'
 import playerStyles from './player/player.scss'
 //Custom components
 import Player from './player/player'
-import OrderableList from '../../global_components/orderable_list/orderableList'
+import OrderableList from 'components/global_components/orderable_list/orderableList'
 //Redux Actions
-import { playerRemoved, playersReordered } from '../../../store/actions/appActions'
-import { PlayerType } from '../../../store/storeTypes'
-import { useTypedSelector } from '../../../store/reducers'
+import { playerRemoved, playersReordered } from 'store/actions/appActions'
+import { PlayerType } from 'store/storeTypes'
+import { useTypedSelector } from 'store/reducers'
 
 type RemovePlayer = (item: PlayerType, newItems: PlayerType[]) => void
 type PlayerDropped = (newPosition: number, item: PlayerType, newItems: PlayerType[]) => void

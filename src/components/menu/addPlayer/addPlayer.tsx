@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import styles from './addPlayer.scss'
 //Custom components
-import Button from '../../../components/global_components/button/button'
-import Input from '../../../components/global_components/input/input'
+import Button from 'components/global_components/button/button'
+import Input from 'components/global_components/input/input'
 //Redux Actions
-import { useTypedSelector } from '../../../store/reducers/index'
-import { addPlayer } from '../../../store/actions/appActions'
+import { useTypedSelector } from 'store/reducers/index'
+import { addPlayer } from 'store/actions/appActions'
 
 type Error = [string, object?] | null
 

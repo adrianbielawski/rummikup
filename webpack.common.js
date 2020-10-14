@@ -11,9 +11,15 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
+        alias: {
+            components: path.join(__dirname, 'src', 'components'),
+            store: path.join(__dirname, 'src', 'store'),
+            global_styles: path.join(__dirname, 'src', 'global_styles'),
+            constants: path.join(__dirname, 'src', 'constants'),
+            assets: path.join(__dirname, 'assets'),
+        },
         modules: [
             path.join(__dirname, 'src'),
-            path.join(__dirname, 'src/tsx'),
             path.join(__dirname, 'assets'),
             'node_modules'
         ],

@@ -5,10 +5,10 @@ import styles from './menu.scss'
 import TimeLimit from './timeLimit/timeLimit'
 import AddPlayer from './addPlayer/addPlayer'
 import Players from './players/players'
-import Button from '../global_components/button/button'
+import Button from 'components/global_components/button/button'
 //Redux
-import { useTypedSelector } from '../../store/reducers/index'
-import { startGame } from '../../store/actions/appActions';
+import { useTypedSelector } from 'store/reducers/index'
+import { startGame } from 'store/actions/appActions';
 
 type ValidateSettings = () => boolean
 type HandleStartGame = () => void

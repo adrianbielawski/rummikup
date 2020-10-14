@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import styles from './colorPicker.scss'
 //Custom components
 import Color from '../color/color'
-import { COLORS } from '../../../../../../constants/constants'
+import { COLORS } from 'constants/constants'
 //Redux Actions
-import { changePlayerColor } from '../../../../../../store/actions/appActions'
+import { changePlayerColor } from 'store/actions/appActions'
 
 type Props = {
     playerId: number

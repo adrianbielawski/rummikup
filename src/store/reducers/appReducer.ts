@@ -1,6 +1,6 @@
 import { AppState, AppActionTypes } from '../storeTypes'
 import { cloneDeep } from 'lodash'
-import { COLORS } from '../.././constants/constants'
+import { COLORS } from 'constants/constants'
 
 const initialState: AppState = {
     screenHeight: window.innerHeight,

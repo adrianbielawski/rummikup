@@ -2,10 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import styles from './game.scss'
 //Custom components
-import Button from '../../global_components/button/button'
+import Button from 'components/global_components/button/button'
 //Redux actions
-import { finishRound } from '../../../store/actions/appActions'
-import { useTypedSelector } from '../../../store/reducers'
+import { finishRound } from 'store/actions/appActions'
+import { useTypedSelector } from 'store/reducers'
+import Timer from './timer/timer'
 
 type HandleFinishRound = () => void
 
@@ -24,6 +25,7 @@ const Game = () => {
             className={styles.game}
             style={{ backgroundColor: colors[0] }}
         >
+            <Timer color={colors[1]}/>
             <p
                 className={styles.playerName}
                 style={{ color: colors[1] }}

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import styles from './player.scss'
 //Custom components
-import OrderableList from '../../../global_components/orderable_list/orderableList'
+import OrderableList from 'components/global_components/orderable_list/orderableList'
 import PlayerColor from './playerColor/playerColor'
 
 type Props = {

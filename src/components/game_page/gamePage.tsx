@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './gamePage.scss'
 //Custom components
 import Game from './game/game'
-import { useTypedSelector } from '../../store/reducers'
+import { useTypedSelector } from 'store/reducers'
 
 type GetContent = () => React.ReactNode
 

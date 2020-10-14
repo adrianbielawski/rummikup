@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import styles from './global_styles/app.scss'
+import styles from 'global_styles/app.scss'
 import { useDispatch } from 'react-redux'
 //Custom components
-import Menu from './components/menu/menu'
-import GamePage from './components/game_page/gamePage'
+import Menu from 'components/menu/menu'
+import GamePage from 'components/game_page/gamePage'
 //Redux
-import { useTypedSelector } from './store/reducers/index'
-import { changeScreenHeight } from './store/actions/appActions'
+import { useTypedSelector } from 'store/reducers/index'
+import { changeScreenHeight } from 'store/actions/appActions'
 
 const App = () => {
     const dispatch = useDispatch()
