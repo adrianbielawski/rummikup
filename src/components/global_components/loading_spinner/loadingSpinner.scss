@@ -1,0 +1,51 @@
+@import "global_styles/variables_and_mixins";
+
+.loader {
+    font-size: 20px;
+    text-indent: -9999em;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: $themeColor;
+    background: linear-gradient(to right, $themeColor 10%, rgba(0, 0, 0, 0) 49%);
+    position: relative;
+    animation: spin-forever 1.4s infinite linear;
+    transform: translateZ(0);
+    overflow: hidden;
+  }
+  .loader:before {
+    width: 50%;
+    height: 50%;
+    background: $themeColor;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+  }
+  .loader:after {
+    background: $grey;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .noBackground:after {
+    background: #fff;
+  }
+  @keyframes spin-forever {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
