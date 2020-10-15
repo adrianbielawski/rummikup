@@ -6,7 +6,7 @@ import styles from './timer.scss'
 import LoadingSpinner from 'components/global_components/loading_spinner/loadingSpinner'
 //Redux Actions
 import { timerUpdated, timeOut, updateTimeEnd } from 'store/actions/appActions'
-import { useTypedSelector } from 'store/reducers'
+import { useTypedSelector } from 'store/reducers/index'
 //Assets
 import beep from 'assets/audio/beep.mp3'
 import longBeep from 'assets/audio/beep.mp3'

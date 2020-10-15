@@ -1,11 +1,11 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import styles from './gameSummary.scss';
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import styles from './gameSummary.scss'
 //Components
-import PlayersSummary from './players_summary/playersSummary';
-import Button from 'components/global_components/button/button';
+import PlayersSummary from './players_summary/playersSummary'
+import Button from 'components/global_components/button/button'
 //Redux Actions
-import { exitGame } from 'store/actions/appActions';
+import { exitGame } from 'store/actions/appActions'
 
 type HandleExit = () => void
 

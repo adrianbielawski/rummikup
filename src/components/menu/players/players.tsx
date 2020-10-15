@@ -8,7 +8,7 @@ import OrderableList from 'components/global_components/orderable_list/orderable
 //Redux Actions
 import { playerRemoved, playersReordered } from 'store/actions/appActions'
 import { PlayerType } from 'store/storeTypes'
-import { useTypedSelector } from 'store/reducers'
+import { useTypedSelector } from 'store/reducers/index'
 
 type RemovePlayer = (item: PlayerType, newItems: PlayerType[]) => void
 type PlayerDropped = (newPosition: number, item: PlayerType, newItems: PlayerType[]) => void

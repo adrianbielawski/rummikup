@@ -4,10 +4,10 @@ import { useDoubleTap } from 'use-double-tap';
 import styles from './game.scss'
 //Custom components
 import Button from 'components/global_components/button/button'
-//Redux actions
-import { switchPlayer, finishRound } from 'store/actions/appActions'
-import { useTypedSelector } from 'store/reducers'
 import Timer from './timer/timer'
+//Redux
+import { switchPlayer, finishRound } from 'store/actions/appActions'
+import { useTypedSelector } from 'store/reducers/index'
 
 type HandleFinishRound = () => void
 

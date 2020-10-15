@@ -2,9 +2,10 @@ import React from 'react'
 import styles from './gamePage.scss'
 //Custom components
 import Game from './game/game'
-import { useTypedSelector } from 'store/reducers'
 import SubtractPoints from './subtract_points/subtractPoints'
 import GameSummary from './game_summary/gameSummary'
+//Redux
+import { useTypedSelector } from 'store/reducers/index'
 
 type GetContent = () => React.ReactNode
 

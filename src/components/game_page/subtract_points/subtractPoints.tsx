@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { every } from 'lodash';
 import styles from './subtractPoints.scss';
 //Custom components
 import Button from 'components/global_components/button/button';
 import PlayerSubPoints from './player_subtract_points/playerSubtractPoints';
 //Redux actions
 import { nextRound, finishGame } from 'store/actions/appActions';
-import { useTypedSelector } from 'store/reducers';
+import { useTypedSelector } from 'store/reducers/index';
 import { Points } from 'store/storeTypes'
 
 type HandleNextRound = (e: React.MouseEvent<HTMLButtonElement>) => void

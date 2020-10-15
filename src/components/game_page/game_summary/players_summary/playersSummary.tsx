@@ -1,9 +1,9 @@
-import React from 'react';
-import styles from './playersSummary.scss';
+import React from 'react'
+import styles from './playersSummary.scss'
 //Components
-import PlayerSummary from './player_summary/playerSummary';
+import PlayerSummary from './player_summary/playerSummary'
 //Redux
-import { useTypedSelector } from 'store/reducers/index';
+import { useTypedSelector } from 'store/reducers/index'
 
 type GetPlayersSummary = () => React.ReactNode[]
 
