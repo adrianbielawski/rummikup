@@ -111,6 +111,9 @@ const appReducer = (
             newState.gameFinished = true
             return newState
 
+        case 'GAME/GAME_CLOSED':
+            return { ...initialState }
+
         default:
             return newState
     }

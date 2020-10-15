@@ -1,0 +1,18 @@
+@import "global_styles/variables_and_mixins";
+
+.gameSummary {
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    .button {
+        margin: 10px auto;
+        font-size: 1.3em;
+        font-weight: 700;
+    }
+}
