@@ -1,8 +1,21 @@
+import { cloneDeep } from "lodash";
 import { Moment } from "moment"
+import { ThunkAction } from 'redux-thunk'
+import { Action } from 'redux'
+import { AppState } from 'store/storeTypes'
 
-import { SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
+import {
+    SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
     PLAYER_COLOR_CHANGED, GAME_STARTED, ROUND_FINISHED, TIMER_UPDATED, TIME_OUT, TIME_END_UPDATED,
-    PLAYER_SWITCHED, PlayerType, AppActionTypes } from '../storeTypes';
+    PLAYER_SWITCHED, NEXT_ROUND, GAME_FINISHED, PlayerType, Points, AppActionTypes
+} from '../storeTypes';
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppState,
+  unknown,
+  Action<string>
+>
 
 export const changeScreenHeight = (screenHeight: number): AppActionTypes => {
     return {
@@ -81,5 +94,53 @@ export const updateTimeEnd = (timeEnd: Moment): AppActionTypes => {
 export const switchPlayer = (): AppActionTypes => {
     return {
         type: PLAYER_SWITCHED,
+    }
+}
+
+const subPoints = (players: PlayerType[], points: Points) => {
+    let subPlayers = cloneDeep(players)
+    let pointsSum = 0
+    let winner = 0
+
+    for (let i = 0; i < subPlayers.length; i++) {
+        const p = points[i] || 0
+        subPlayers[i].score -= p
+        pointsSum += p
+        if (p === 0) {
+            winner = i
+        }
+    };
+
+    subPlayers[winner].score += pointsSum
+    return subPlayers
+};
+
+const handleNextRound = (subPlayers: PlayerType[]): AppActionTypes => {
+    return {
+        type: NEXT_ROUND,
+        subPlayers,
+    }
+}
+
+export const nextRound = (
+    players: PlayerType[],
+    points: Points
+): AppThunk => dispatch => {
+    const subPlayers = subPoints(players, points)
+    dispatch(handleNextRound(subPlayers))
+}
+
+export const finishGame = (
+    players: PlayerType[],
+    points: Points
+): AppThunk => dispatch => {
+    const subPlayers = subPoints(players, points)
+    dispatch(handleFinishGame(subPlayers))
+}
+
+export const handleFinishGame = (subPlayers: PlayerType[]): AppActionTypes => {
+    return {
+        type: GAME_FINISHED,
+        subPlayers,
     }
 }

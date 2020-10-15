@@ -25,6 +25,7 @@ const initialState: AppState = {
     currentPlayer: 0,
     gameStarted: false,
     roundFinished: false,
+    gameFinished : false,
 }
 
 const appReducer = (
@@ -93,6 +94,21 @@ const appReducer = (
 
         case 'GAME/TIME_END_UPDATED':
             newState.timeEnd = action.timeEnd
+            return newState
+
+        case 'GAME/NEXT_ROUND':
+            newState.players = action.subPlayers
+            let currentPlayer = newState.currentPlayer + 1
+            if (currentPlayer >= newState.players.length) {
+                currentPlayer = 0
+            }
+            newState.currentPlayer = currentPlayer
+            newState.roundFinished = false
+            return newState
+
+        case 'GAME/GAME_FINISHED':
+            newState.players = action.subPlayers
+            newState.gameFinished = true
             return newState
 
         default:

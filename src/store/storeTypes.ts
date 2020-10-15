@@ -12,12 +12,20 @@ export const TIMER_UPDATED = 'GAME/TIMER_UPDATED'
 export const TIME_OUT = 'GAME/TIME_OUT'
 export const TIME_END_UPDATED = 'GAME/TIME_END_UPDATED'
 export const PLAYER_SWITCHED = 'GAME/PLAYER_SWITCHED'
+export const NEXT_ROUND = 'GAME/NEXT_ROUND'
+export const GAME_FINISHED = 'GAME/GAME_FINISHED'
+
+export type NextRound = (players: PlayerType[], points: Points) => void
 
 export interface PlayerType {
     playerName: string,
     id: number,
     color: string[],
     score: number,
+}
+
+export interface Points {
+    [key: number]: number
 }
 
 export interface AppState {
@@ -29,6 +37,7 @@ export interface AppState {
     currentPlayer: number,
     gameStarted: boolean,
     roundFinished: boolean,
+    gameFinished: boolean,
 }
 
 interface changeScreenHeight {
@@ -87,5 +96,16 @@ interface playerSwitched {
     type: typeof PLAYER_SWITCHED,
 }
 
+interface handleNextRound {
+    type: typeof NEXT_ROUND,
+    subPlayers: PlayerType[],
+}
+
+interface handleGameFinished {
+    type: typeof GAME_FINISHED,
+    subPlayers: PlayerType[],
+}
+
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
     | changePlayerColor | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd | playerSwitched
+    | handleNextRound | handleGameFinished
