@@ -5,11 +5,11 @@ import styles from './timer.scss'
 //Custom Components
 import LoadingSpinner from 'components/global_components/loading_spinner/loadingSpinner'
 //Redux Actions
-import { timerUpdated, timeOut, updateTimeEnd } from 'store/actions/appActions'
+import { timerUpdated, updateTimeEnd } from 'store/actions/appActions'
 import { useTypedSelector } from 'store/reducers/index'
 //Assets
 import beep from 'assets/audio/beep.mp3'
-import longBeep from 'assets/audio/beep.mp3'
+import longBeep from 'assets/audio/long-beep.mp3'
 
 const AUDIO = {
     beep: new Audio(beep),
@@ -29,6 +29,7 @@ const Timer = (props: Props) => {
     const timeEnd = useTypedSelector(state => state.app.timeEnd)
     const timeLeft = useTypedSelector(state => state.app.timeLeft)
     const timeLimit = useTypedSelector(state => state.app.timeLimit)
+    const roundCount = useTypedSelector(state => state.app.roundCount)
 
     useEffect(() => {
         dispatch(updateTimeEnd(getTimeEnd()))
@@ -42,7 +43,7 @@ const Timer = (props: Props) => {
                 clearInterval(timerInterval.current)
             }
         }
-    }, [timeEnd.valueOf()])
+    }, [timeEnd.valueOf(), roundCount])
 
     useEffect(() => {
         if ((timeLeft % 30 === 0 && timeLeft !== timeLimit || timeLeft <= 10) && timeLeft !== 0) {
@@ -52,7 +53,9 @@ const Timer = (props: Props) => {
         if (timeLeft !== null && timeLeft <= 0) {
             AUDIO.longBeep.play()
             setTimeout(() => {
-                dispatch(timeOut())
+                if (timerInterval.current) {
+                    clearInterval(timerInterval.current)
+                }
             }, 1000)
         }
     }, [timeLeft])

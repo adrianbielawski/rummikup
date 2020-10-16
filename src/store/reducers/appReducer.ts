@@ -5,8 +5,8 @@ import { COLORS } from 'constants/constants'
 
 const initialState: AppState = {
     screenHeight: window.innerHeight,
-    timeLimit: 60,
-    timeLeft: 60,
+    timeLimit: 5,
+    timeLeft: 5,
     timeEnd: moment(),
     players: [
         {
@@ -87,7 +87,6 @@ const appReducer = (
             return newState
 
         case 'GAME/PLAYER_SWITCHED':
-        case 'GAME/TIME_OUT':
             let nextPlayer = newState.currentPlayer + 1
 
             if (nextPlayer === newState.players.length) {
@@ -109,6 +108,7 @@ const appReducer = (
                 currentPlayer = 0
             }
             newState.currentPlayer = currentPlayer
+            newState.timeLeft = newState.timeLimit
             newState.gameStarted = false
             newState.roundFinished = false
             newState.roundCount += 1

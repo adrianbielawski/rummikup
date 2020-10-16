@@ -10,7 +10,6 @@ export const GAME_CREATED = 'MENU/GAME_CREATED'
 export const GAME_STARTED = 'GAME/GAME_STARTED'
 export const ROUND_FINISHED = 'GAME/ROUND_FINISHED'
 export const TIMER_UPDATED = 'GAME/TIMER_UPDATED'
-export const TIME_OUT = 'GAME/TIME_OUT'
 export const TIME_END_UPDATED = 'GAME/TIME_END_UPDATED'
 export const PLAYER_SWITCHED = 'GAME/PLAYER_SWITCHED'
 export const NEXT_ROUND = 'GAME/NEXT_ROUND'
@@ -91,10 +90,6 @@ interface timerUpdated {
     type: typeof TIMER_UPDATED,
 }
 
-interface timeOut {
-    type: typeof TIME_OUT,
-}
-
 interface updateTimeEnd {
     type: typeof TIME_END_UPDATED,
     timeEnd: Moment,
@@ -119,5 +114,5 @@ interface exitGame {
 }
 
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
-    | changePlayerColor | createGame | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd | playerSwitched
+    | changePlayerColor | createGame | startGame | finishRound | timerUpdated | updateTimeEnd | playerSwitched
     | handleNextRound | handleGameFinished | exitGame

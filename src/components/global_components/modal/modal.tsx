@@ -33,7 +33,6 @@ const Modal = (props: Props) => {
             window.removeEventListener('scroll', updatePosition)
         }
     }, [])
-    console.log(props.cardClassName)
 
     const cx = classNames.bind(styles)
     const modalClass = cx('modal', props.className)
