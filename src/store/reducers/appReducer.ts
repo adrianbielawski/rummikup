@@ -5,23 +5,10 @@ import { COLORS } from 'constants/constants'
 
 const initialState: AppState = {
     screenHeight: window.innerHeight,
-    timeLimit: 5,
-    timeLeft: 5,
+    timeLimit: 60,
+    timeLeft: 60,
     timeEnd: moment(),
-    players: [
-        {
-            playerName: 'sss',
-            id: 0,
-            color: Object.entries(COLORS)[0],
-            score: 0,
-        },
-        {
-            playerName: 'ddd',
-            id: 1,
-            color: Object.entries(COLORS)[1],
-            score: 0,
-        }
-    ],
+    players: [],
     currentPlayer: 0,
     roundCount: 1,
     gameCreated: false,
