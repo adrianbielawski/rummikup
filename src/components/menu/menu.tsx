@@ -8,22 +8,22 @@ import Players from './players/players'
 import Button from 'components/global_components/button/button'
 //Redux
 import { useTypedSelector } from 'store/reducers/index'
-import { startGame } from 'store/actions/appActions';
+import { createGame } from 'store/actions/appActions';
 
 type ValidateSettings = () => boolean
-type HandleStartGame = () => void
+type HandleCreateGame = () => void
 
 const Menu = () => {
     const dispatch = useDispatch()
     const players = useTypedSelector(state => state.app.players)
 
-    const handleStartGame: HandleStartGame = () => {
+    const handleCreateGame: HandleCreateGame = () => {
         const isValid = validateSettings()
 
         if (!isValid) {
             return
         }
-        dispatch(startGame())
+        dispatch(createGame())
     }
 
     const validateSettings: ValidateSettings = () => {
@@ -41,7 +41,7 @@ const Menu = () => {
             <Players />
             <Button
                 className={styles.startButton}
-                onClick={handleStartGame}
+                onClick={handleCreateGame}
                 disabled={players.length < 2}
             >
                 Start game

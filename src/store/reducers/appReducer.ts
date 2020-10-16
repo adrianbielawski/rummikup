@@ -23,6 +23,8 @@ const initialState: AppState = {
         }
     ],
     currentPlayer: 0,
+    roundCount: 1,
+    gameCreated: false,
     gameStarted: false,
     roundFinished: false,
     gameFinished : false,
@@ -66,7 +68,11 @@ const appReducer = (
             newState.players = players
             return newState
 
-        case 'MENU/GAME_STARTED':
+        case 'MENU/GAME_CREATED':
+            newState.gameCreated = true
+            return newState
+
+        case 'GAME/GAME_STARTED':
             newState.gameStarted = true
             return newState
 
@@ -103,7 +109,9 @@ const appReducer = (
                 currentPlayer = 0
             }
             newState.currentPlayer = currentPlayer
+            newState.gameStarted = false
             newState.roundFinished = false
+            newState.roundCount += 1
             return newState
 
         case 'GAME/GAME_FINISHED':

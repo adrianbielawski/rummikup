@@ -6,7 +6,8 @@ export const PLAYER_ADDED = 'MENU/PLAYER_ADDED'
 export const PLAYER_REMOVED = 'MENU/PLAYER_REMOVED'
 export const PLAYERS_REORDERED = 'MENU/PLAYERS_REORDERED'
 export const PLAYER_COLOR_CHANGED = 'MENU/PLAYER_COLOR_CHANGED'
-export const GAME_STARTED = 'MENU/GAME_STARTED'
+export const GAME_CREATED = 'MENU/GAME_CREATED'
+export const GAME_STARTED = 'GAME/GAME_STARTED'
 export const ROUND_FINISHED = 'GAME/ROUND_FINISHED'
 export const TIMER_UPDATED = 'GAME/TIMER_UPDATED'
 export const TIME_OUT = 'GAME/TIME_OUT'
@@ -36,6 +37,8 @@ export interface AppState {
     timeEnd: Moment,
     players: PlayerType[],
     currentPlayer: number,
+    roundCount: number,
+    gameCreated: boolean,
     gameStarted: boolean,
     roundFinished: boolean,
     gameFinished: boolean,
@@ -70,6 +73,10 @@ interface changePlayerColor {
     type: typeof PLAYER_COLOR_CHANGED,
     playerId: number,
     color: string[],
+}
+
+interface createGame {
+    type: typeof GAME_CREATED,
 }
 
 interface startGame {
@@ -112,5 +119,5 @@ interface exitGame {
 }
 
 export type AppActionTypes = changeScreenHeight | updateTimeLimit | addPlayer | playerRemoved | playersReordered
-    | changePlayerColor | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd | playerSwitched
+    | changePlayerColor | createGame | startGame | finishRound | timerUpdated | timeOut | updateTimeEnd | playerSwitched
     | handleNextRound | handleGameFinished | exitGame

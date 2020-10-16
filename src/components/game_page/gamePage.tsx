@@ -10,7 +10,7 @@ import { useTypedSelector } from 'store/reducers/index'
 type GetContent = () => React.ReactNode
 
 const GamePage = () => {
-    const gameStarted = useTypedSelector(state => state.app.gameStarted)
+    const gameCreated = useTypedSelector(state => state.app.gameCreated)
     const roundFinished = useTypedSelector(state => state.app.roundFinished)
     const gameFinished = useTypedSelector(state => state.app.gameFinished)
 
@@ -19,7 +19,7 @@ const GamePage = () => {
           return <GameSummary />
         } else if (roundFinished) {
           return <SubtractPoints />
-        } else if (gameStarted) {
+        } else if (gameCreated) {
           return <Game />
         }
     }

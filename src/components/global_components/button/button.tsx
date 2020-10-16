@@ -4,7 +4,7 @@ import classNames from 'classnames/bind'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string,
-    round?: boolean
+    round?: boolean,
 }
 
 const cx = classNames.bind(styles)

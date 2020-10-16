@@ -11,7 +11,7 @@ import { changeScreenHeight } from 'store/actions/appActions'
 const App = () => {
     const dispatch = useDispatch()
     const screenHeight = useTypedSelector(state => state.app.screenHeight)
-    const gameStarted = useTypedSelector(state => state.app.gameStarted)
+    const gameCreated = useTypedSelector(state => state.app.gameCreated)
 
     const handleResize = () => {
         dispatch(changeScreenHeight(window.innerHeight))
@@ -25,7 +25,7 @@ const App = () => {
     }, [])
 
     const getContent = () => {
-        if (gameStarted) {
+        if (gameCreated) {
             return <GamePage />
         } else {
             return <Menu />
