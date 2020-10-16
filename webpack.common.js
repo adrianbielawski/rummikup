@@ -56,7 +56,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|mp3)$/,
+                test: /\.(png|jpg|mp3|svg)$/,
                 use: [
                     'file-loader',
                 ]
@@ -64,6 +64,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new FaviconsWebpackPlugin("./assets/img/icon.png"),
+        new FaviconsWebpackPlugin("./assets/img/icon.svg"),
     ],
 };

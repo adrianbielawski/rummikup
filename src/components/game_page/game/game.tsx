@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react'
 import { useDispatch } from 'react-redux'
 import { useDoubleTap } from 'use-double-tap';
+import classNames from 'classnames/bind'
 import styles from './game.scss'
 //Custom components
 import Button from 'components/global_components/button/button'
@@ -10,6 +11,8 @@ import Timer from './timer/timer'
 import { startGame, switchPlayer, finishRound } from 'store/actions/appActions'
 import { useTypedSelector } from 'store/reducers/index'
 import CircleCountdown from 'components/global_components/circle_countdown/circleCountdown'
+//Assets
+import icon from 'assets/img/icon.svg'
 
 type HandleFinishRound = () => void
 type HandleStartGame = (e: MouseEvent<HTMLButtonElement>) => void
@@ -23,7 +26,7 @@ const Game = () => {
     const timeLeft = useTypedSelector(state => state.app.timeLeft)
     const currentPlayer = useTypedSelector(state => state.app.currentPlayer)
     const colors = players[currentPlayer].color
-    
+
     const dblTap = useDoubleTap(() => {
         dispatch(switchPlayer())
     })
@@ -38,24 +41,37 @@ const Game = () => {
         dispatch(finishRound())
     }
 
+    const cx = classNames.bind(styles)
+    const iconClass = cx(
+        'countdownIcon',
+        { large: timeLeft === 0 }
+    )
+
     return (
         <div
-            { ...dblTap }
+            {...dblTap}
             className={styles.game}
             style={{ backgroundColor: colors[0] }}
         >
-            <Modal show={!gameStarted} cardClassName={styles.modalCard}> 
+            <Modal show={!gameStarted} cardClassName={styles.modalCard}>
                 <Button className={styles.startButton} onClick={handleStartGame}>
                     {`Start round ${rounCount}`}
                 </Button>
             </Modal>
-            {gameStarted && <Timer color={colors[1]}/>}
-            {gameStarted && <CircleCountdown
-                time={timeLimit}
-                color={colors[1]}
-                radius={100}
-                innerRadius={30}
-                restart={timeLeft === timeLimit} />
+            {gameStarted && <Timer color={colors[1]} />}
+            {gameStarted &&
+                (
+                    <div className={styles.countdownWrapper}>
+                        <img src={icon} className={iconClass} style={{background: colors[1]}} />
+                        <CircleCountdown
+                            time={timeLimit}
+                            color={colors[1]}
+                            radius={100}
+                            innerRadius={30}
+                            restart={timeLeft === timeLimit}
+                        />
+                    </div>
+                )
             }
             <p
                 className={styles.playerName}
