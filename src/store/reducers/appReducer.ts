@@ -76,7 +76,7 @@ const appReducer = (
         case 'GAME/PLAYER_SWITCHED':
             let nextPlayer = newState.currentPlayer + 1
 
-            if (nextPlayer === newState.players.length) {
+            if (nextPlayer >= newState.players.length) {
                 nextPlayer = 0;
             }
 
@@ -90,9 +90,9 @@ const appReducer = (
 
         case 'GAME/NEXT_ROUND':
             newState.players = action.subPlayers
-            let currentPlayer = newState.currentPlayer + 1
-            if (currentPlayer >= newState.players.length) {
-                currentPlayer = 0
+            let currentPlayer = newState.roundCount
+            if (newState.roundCount >= newState.players.length) {
+                currentPlayer = newState.roundCount % newState.players.length
             }
             newState.currentPlayer = currentPlayer
             newState.timeLeft = newState.timeLimit
