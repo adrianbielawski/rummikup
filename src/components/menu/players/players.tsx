@@ -30,6 +30,7 @@ const Players = () => {
             className={styles.players}
             itemClassName={playerStyles.player}
             grabbedItemClassName={playerStyles.grabbed}
+            rightAnimation={true}
             items={players}
             itemComponent={Player}
             onRemove={removePlayer}

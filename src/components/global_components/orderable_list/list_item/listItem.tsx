@@ -1,166 +1,88 @@
-import React, { useEffect, useRef, useContext, useReducer } from 'react'
-import { cloneDeep } from 'lodash'
+import React, { useState, useRef, useContext } from 'react'
 import classNames from 'classnames/bind'
 import styles from '../orderableList.scss'
 //Contexts
 import ItemContext from './itemContext'
-import ListContext from '../listContext'
+import { ListContext } from '../listStore'
 
-type OwnProps<T> = {
+type Props<T> = {
     className?: string
     grabbedClassName?: string
+    rightAnimation?: boolean
+    transition: boolean
+    transform: boolean
     item: T
     index: number
-    onRemove: (item: T, newItems: T[]) => void
-    onDrop: (newPosition: number, item: T, newItems: T[]) => void
     children: React.ReactNode
 }
 
-interface Coords {
-    top: number
-    left: number
+type HandleRemove = () => void
+type GetDynamicStyles = () => object
+
+type DynamicStylesType = {
+    transform: string | boolean,
+    top?: number,
+    left?: number,
+    width?: number,
 }
 
-type State = {
-    elementH: number | null
-    coords: Coords
-    initialTopOffset: number
-    topOffset: number
-    itemRemoved: boolean
-}
+const ListItem = (props: Props<any>) => {
+    const { state: listContext, handleRemove: onRemove } = useContext(ListContext)
+    const element = useRef(null)
+    const [itemRemoved, setItemRemoved] = useState(false)
 
-type Action =
-    | { type: 'TOP_OFFSET_UPDATED', topOffset: number }
-    | { type: 'ITEM_REMOVED' }
-    | { type: 'ELEMENT_GRABBED', topStart: number, pageYOffset: number, elementH: number }
-    | { type: 'ELEMENT_MOVED', coords: Coords }
-    | { type: 'CLEAR_STATE' }
+    const { grabbedElement } = listContext
+    const isGrabbed = grabbedElement.index === props.index
 
-const initialState = {
-    elementH: null,
-    coords: { top: 0, left: 0 },
-    initialTopOffset: 0,
-    topOffset: 0,
-    itemRemoved: false,
-}
-
-const reducer = (state: State, action: Action) => {
-    let newState = { ...state }
-    switch (action.type) {
-        case 'TOP_OFFSET_UPDATED':
-            newState.topOffset = action.topOffset
-            return newState
-        case 'ITEM_REMOVED':
-            newState.itemRemoved = true;
-            return newState
-        case 'ELEMENT_GRABBED':
-            newState.coords = { top: action.topStart, left: newState.coords.left }
-            newState.initialTopOffset = action.pageYOffset
-            newState.topOffset = action.pageYOffset
-            newState.elementH = action.elementH
-            return newState
-        case 'ELEMENT_MOVED':
-            newState.coords = action.coords
-            return newState
-        case 'CLEAR_STATE':
-            newState.coords = { top: 0, left: 0 }
-            newState.initialTopOffset = 0
-            newState.topOffset = 0
-            newState.itemRemoved = false
-            return newState;
-        default:
-            throw new Error();
-    }
-}
-
-type HandleGrab = (pageYOffset: number, topStart: number, elementH: number) => void
-type HandleMove = (coords: Coords) => void
-type HandleDrop = (newPosition: number) => void
-
-const ListItem = (props: OwnProps<any>) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
-    const listContext = useContext(ListContext)
-    const element = useRef<HTMLLIElement>(null)
-
-    useEffect(() => {
-        dispatch({ type: 'CLEAR_STATE' })
-    }, [props.item])
-
-    const updateTopOffset = () => {
-        dispatch({ type: 'TOP_OFFSET_UPDATED', topOffset: window.pageYOffset })
+    const handleRemove: HandleRemove = () => {
+        setItemRemoved(true)
+        setTimeout(() => onRemove(props.index), 500)
     }
 
-    const handleRemove = () => {
-        dispatch({ type: 'ITEM_REMOVED' })
-        setTimeout(remove, 500);
-    }
-
-    const remove = () => {
-        if (element && element.current) {
-            element.current.style.top = '0'
-            element.current.style.left = '0'
-            let newItems = cloneDeep(listContext.items)
-            newItems.splice(props.index, 1)
-            props.onRemove(props.item, newItems)
+    const getDynamicStyles: GetDynamicStyles = () => {
+        if (grabbedElement.index === null) {
+            return {}
         }
+
+        let styles: DynamicStylesType = {
+            transform: props.transform && `translate(0px, ${grabbedElement.height}px)`,
+        }
+        
+        if (isGrabbed) {
+            styles = {
+                ...styles, 
+                top: grabbedElement.coords.top,
+                left: grabbedElement.coords.left,
+                width: grabbedElement.width!,
+            }
+        }
+        
+        return styles
     }
 
-    const handleGrab: HandleGrab = (pageYOffset, topStart, elementH) => {
-        dispatch({ type: 'ELEMENT_GRABBED', pageYOffset, topStart, elementH })
-    }
-
-    const handleMove: HandleMove = (coords) => {
-        dispatch({ type: 'ELEMENT_MOVED', coords })
-    }
-
-    const handleDrop: HandleDrop = (newPosition) => {
-        let newItems = cloneDeep(listContext.items)
-        newItems.splice(newPosition, 0, newItems.splice(props.index, 1)[0])
-
-        Promise.resolve(
-            props.onDrop(newPosition, props.item, newItems)
-        )
-            .then(() => {
-                dispatch({ type: 'CLEAR_STATE' })
-                listContext.onDrop()
-            })
-            .catch(e => console.log(e))
-    }
-
-    const style = {
-        top: state.coords.top + state.topOffset - state.initialTopOffset,
-        left: state.coords.left,
-    };
-
-    const cx = classNames.bind(styles)
-    const liClass = cx(
-        'item',
+    const liClass = classNames(
+        styles.item,
         props.className,
-        listContext.grabbedElement === props.index && props.grabbedClassName,
+        isGrabbed && props.grabbedClassName,
         {
-            removed: state.itemRemoved,
-            grabbed: listContext.grabbedElement === props.index,
+            [styles.removed]: itemRemoved,
+            [styles.grabbed]: isGrabbed,
+            [styles.transition]: props.transition,
+            [styles.rightAnimation]: props.rightAnimation,
         }
     )
 
     const itemContext = {
         onRemove: handleRemove,
-        onGrab: handleGrab,
-        onMove: handleMove,
-        onDrop: handleDrop,
-        updateTopOffset: updateTopOffset,
-        element: element,
-        elementH: state.elementH,
+        element,
         index: props.index,
-        initialTopOffset: state.initialTopOffset,
-        topOffset: state.topOffset,
     }
 
     return (
         <ItemContext.Provider value={itemContext}>
             <li
                 className={liClass}
-                style={style}
+                style={getDynamicStyles()}
                 ref={element}
             >
                 {props.children}

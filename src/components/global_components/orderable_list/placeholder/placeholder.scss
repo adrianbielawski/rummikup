@@ -1,0 +1,8 @@
+.placeholder {
+    list-style: none;
+    width: 100%;
+    &.rightAnimation {
+        float: right;
+        clear: both;
+    }
+}
