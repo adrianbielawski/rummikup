@@ -37,7 +37,7 @@ const Timer = (props: Props) => {
 
     useEffect(() => {
         updateTimer()
-            timerInterval.current = setInterval(updateTimer, 1000)
+        timerInterval.current = setInterval(updateTimer, 1000)
         return () => {
             if (timerInterval.current) {
                 clearInterval(timerInterval.current)
@@ -52,11 +52,9 @@ const Timer = (props: Props) => {
 
         if (timeLeft !== null && timeLeft <= 0) {
             AUDIO.longBeep.play()
-            setTimeout(() => {
-                if (timerInterval.current) {
-                    clearInterval(timerInterval.current)
-                }
-            }, 1000)
+            if (timerInterval.current) {
+                clearInterval(timerInterval.current)
+            }
         }
     }, [timeLeft])
 

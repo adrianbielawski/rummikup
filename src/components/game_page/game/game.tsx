@@ -64,11 +64,11 @@ const Game = () => {
                     <div className={styles.countdownWrapper}>
                         <img src={icon} className={iconClass} style={{background: colors[1]}} />
                         <CircleCountdown
+                            key={currentPlayer}
                             time={timeLimit}
                             color={colors[1]}
                             radius={100}
                             innerRadius={30}
-                            restart={timeLeft === timeLimit}
                         />
                     </div>
                 )

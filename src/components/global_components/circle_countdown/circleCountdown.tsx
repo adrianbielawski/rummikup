@@ -15,7 +15,6 @@ type Props = {
     periodStart: number,
     spikiness: number,
     time: number,
-    restart: boolean,
 }
 
 const CircleCountdown = (props: Props) => {
@@ -37,9 +36,6 @@ const CircleCountdown = (props: Props) => {
     }, [])
 
     useEffect(() => {
-        if (props.restart === false) {
-            return
-        }
         arcRef.current!.transition()
             .ease(d3.easeLinear)
             .duration(props.time * 1000)
@@ -71,7 +67,7 @@ const CircleCountdown = (props: Props) => {
                     return arc(data)!
                 }
             })
-    }, [props.restart])
+    }, [])
 
     const radius = props.radius * (1 + props.zoomFactor)
 
