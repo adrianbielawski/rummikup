@@ -37,6 +37,7 @@
         left: 75px;
         border-radius: 50%;
         transition: all .2s ease-in;
+        @include resetTapHighlight;
         &.large {
             width: 220px;
             top: 10px;
