@@ -14,7 +14,7 @@ const GameSummary = () => {
 
     const handleExit: HandleExit = () => {
         dispatch(exitGame())
-    };
+    }
 
     return (
         <div className={styles.gameSummary}>

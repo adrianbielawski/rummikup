@@ -14,7 +14,7 @@ import longBeep from 'assets/audio/long-beep.mp3'
 const AUDIO = {
     beep: new Audio(beep),
     longBeep: new Audio(longBeep)
-};
+}
 
 type Props = {
     color: string,

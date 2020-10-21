@@ -42,7 +42,7 @@ const AddPlayer = () => {
             error = ['Max 4 players']
         }
         if (isPlayerExists) {
-            error = ['Player exists', { 'player': playerName }]
+            error = [`Player with name ${playerName} aleready exists`]
         }
         if (playerName.length < 1) {
             error = ["Please type in player's name"]
@@ -55,7 +55,7 @@ const AddPlayer = () => {
     }
 
     const handleSubmit: HandleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (playerNameInput && playerNameInput.current) {
             const playerName = playerNameInput.current.value.trim()
             const { valid, error } = validatePlayerName(playerName)
@@ -67,7 +67,7 @@ const AddPlayer = () => {
             playerNameInput.current.value = ''
             dispatch(addPlayer(playerName))
         }
-    };
+    }
 
     return (
         <div className={styles.addPlayer}>

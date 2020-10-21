@@ -1,3 +1,3 @@
 declare interface CSSStyleDeclaration {
-    overscrollBehavior: string;
+    overscrollBehavior: string
 }

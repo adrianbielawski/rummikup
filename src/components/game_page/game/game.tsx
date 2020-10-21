@@ -1,11 +1,11 @@
 import React, { MouseEvent } from 'react'
 import { useDispatch } from 'react-redux'
-import { useDoubleTap } from 'use-double-tap';
+import { useDoubleTap } from 'use-double-tap'
 import classNames from 'classnames/bind'
 import styles from './game.scss'
 //Custom components
 import Button from 'components/global_components/button/button'
-import Modal from 'components/global_components/modal/modal';
+import Modal from 'components/global_components/modal/modal'
 import Timer from './timer/timer'
 //Redux
 import { startGame, switchPlayer, finishRound } from 'store/actions/appActions'

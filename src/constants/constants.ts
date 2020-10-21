@@ -7,4 +7,4 @@ export const COLORS = {
     '#20B2AA': '#000',
     '#800080': '#fff',
     '#ff0000': '#fff',
-};
+}

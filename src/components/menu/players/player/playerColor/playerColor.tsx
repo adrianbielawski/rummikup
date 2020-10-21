@@ -19,7 +19,7 @@ const PlayerColor = (props: Props<any>) => {
             <Color color={props.player.color[0]} />
             {show && <ColorPicker playerId={props.player.id} />}
         </div>
-    );
+    )
 }
 
 export default PlayerColor

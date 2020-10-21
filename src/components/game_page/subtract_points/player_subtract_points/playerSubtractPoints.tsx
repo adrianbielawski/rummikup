@@ -1,7 +1,7 @@
-import React, { ChangeEvent } from 'react';
-import styles from './playerSubtractPoints.scss';
+import React from 'react'
+import styles from './playerSubtractPoints.scss'
 //Custom Components
-import Input from 'components/global_components/input/input';
+import Input from 'components/global_components/input/input'
 
 type Props = {
     playerName: string,
@@ -14,6 +14,6 @@ const PlayerSubPoints = (props: Props) => {
             <div className={styles.playerName}>{props.playerName}</div>
             <Input type="number" placeholder="0" onChange={props.onChange} />
         </li>
-    );
+    )
 }
-export default PlayerSubPoints;
+export default PlayerSubPoints

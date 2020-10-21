@@ -39,7 +39,7 @@ const appReducer = (
                 id,
                 color: Object.entries(COLORS)[id],
                 score: 0,
-            });
+            })
             newState.players = newPlayers
             return newState
 
@@ -77,7 +77,7 @@ const appReducer = (
             let nextPlayer = newState.currentPlayer + 1
 
             if (nextPlayer >= newState.players.length) {
-                nextPlayer = 0;
+                nextPlayer = 0
             }
 
             newState.currentPlayer = nextPlayer

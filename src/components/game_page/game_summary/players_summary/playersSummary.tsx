@@ -13,7 +13,7 @@ const PlayersSummary = () => {
         let sortedPlayers = [...players]
         sortedPlayers.sort((a, b) => {
             return b.score - a.score
-        });
+        })
 
         let previousPlayerScore: number
         let previousPlayerPlaceText = ''
@@ -33,7 +33,7 @@ const PlayersSummary = () => {
             previousPlace = place
 
             return <PlayerSummary player={player} placeText={placeText} place={place} key={index} />
-        });
+        })
         return playersSummary
     }
 

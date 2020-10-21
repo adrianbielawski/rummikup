@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep } from "lodash"
 import { Moment } from "moment"
 import { ThunkAction } from 'redux-thunk'
 import { Action } from 'redux'
@@ -8,7 +8,7 @@ import {
     SCREEN_HEIGHT_CHANGED, TIME_LIMIT_UPDATED, PLAYER_ADDED, PLAYER_REMOVED, PLAYERS_REORDERED,
     PLAYER_COLOR_CHANGED, GAME_CREATED, GAME_STARTED, ROUND_FINISHED, TIMER_UPDATED, TIME_END_UPDATED,
     PLAYER_SWITCHED, NEXT_ROUND, GAME_FINISHED, GAME_CLOSED, PlayerType, Points, AppActionTypes
-} from '../storeTypes';
+} from '../storeTypes'
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -109,11 +109,11 @@ const subPoints = (players: PlayerType[], points: Points) => {
         if (p === 0) {
             winner = i
         }
-    };
+    }
 
     subPlayers[winner].score += pointsSum
     return subPlayers
-};
+}
 
 const handleNextRound = (subPlayers: PlayerType[]): AppActionTypes => {
     return {

@@ -27,7 +27,7 @@ const ColorPicker = (props: Props) => {
         <div className={styles.colorPicker}>
             {getColors()}
         </div>
-    );
+    )
 }
 
 export default ColorPicker

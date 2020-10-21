@@ -14,7 +14,7 @@ const Color = (props: Props) => {
             onClick={props.onClick}
         >
         </div>
-    );
+    )
 }
 
 export default Color

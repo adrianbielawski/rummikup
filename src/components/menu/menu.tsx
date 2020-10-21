@@ -8,7 +8,7 @@ import Players from './players/players'
 import Button from 'components/global_components/button/button'
 //Redux
 import { useTypedSelector } from 'store/reducers/index'
-import { createGame } from 'store/actions/appActions';
+import { createGame } from 'store/actions/appActions'
 
 type ValidateSettings = () => boolean
 type HandleCreateGame = () => void
