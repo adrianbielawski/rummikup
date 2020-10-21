@@ -10,7 +10,7 @@
     justify-content: space-between;
     .playerName {
         font-size: 4em;
-        color: #fff;
+        transition: color .2s ease-in;
         @include resetTapHighlight;
     }
     .finishButton {

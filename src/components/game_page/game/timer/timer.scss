@@ -9,7 +9,7 @@
         font-size: 4em;
         line-height: 1em;
         font-weight: 900;
-        color: darken($themeColor, 10);
+        transition: color .2s ease-in;
         @include resetTapHighlight;
     }
 }
