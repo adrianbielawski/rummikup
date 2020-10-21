@@ -33,7 +33,7 @@ const App = () => {
     }
 
     return (
-        <div className={styles.App} style={{ height: screenHeight }}>
+        <div className={styles.App} style={{ minHeight: screenHeight }}>
             {getContent()}
         </div>
     )
