@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs12 as builder
+FROM node:lts-alpine as builder
 
 WORKDIR /app
 
@@ -10,5 +10,5 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx
-COPY --from=builder /app/dist /usr/share/nginx/html
+FROM caddy:alpine
+COPY --from=builder /app/dist /usr/share/caddy
